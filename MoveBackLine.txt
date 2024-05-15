@@ -1,0 +1,25 @@
+X = 50/1000
+DIFFERENT = 5/100
+Y = -319/1000
+Z1 = -163.60/1000
+Z2 = -180/1000
+RX1 = 1.931
+RX2 = 2.433
+RY1 = 1.944
+RY2 = 2.420
+RZ1 = 0.54
+RZ2 = -0.515
+TCP_P0 = p[X,Y,Z2,RX1,RY1,RZ1]
+TCP_P1 = p[X,Y,Z1,RX1,RY1,RZ1]
+TCP_P2 = p[X-DIFFERENT,Y,Z1,RX2,RY2,RZ2]
+TCP_P3 = p[X-DIFFERENT,Y,Z2,RX2,RY2,RZ2]
+JOINT_P0 = get_inverse_kin(TCP_P0)
+JOINT_P1 = get_inverse_kin(TCP_P1)
+JOINT_P2 = get_inverse_kin(TCP_P2)
+JOINT_P3 = get_inverse_kin(TCP_P3)
+gripper_nyitas()
+movel(JOINT_P3)
+gripper_csukas()
+movel(JOINT_P2)
+movel(JOINT_P1)
+movel(JOINT_P0)
